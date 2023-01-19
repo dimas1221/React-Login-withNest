@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import ApiLogin from '../Api/apiLogin';
+import { useNavigate } from 'react-router-dom';
 const Login=()=> {
     const [username, setUsername]=useState('')
     const [password, setPassword]=useState('')
-
+    const navigate = useNavigate()
+    const [error, setError]= useState('')
     const Submit = async ()=>{
         const result =await ApiLogin.login(username, password)
-        console.log(result)
+         if (result.message ==='berhasil') {
+            navigate('/tabel')
+        }else{
+            setError ('password atau username salah')
+        }
     }
     return (  
     <main id="main" class="main">
@@ -40,7 +46,9 @@ const Login=()=> {
                         <div class="input-group has-validation">
                         <span class="input-group-text" id="inputGroupPrepend">@</span>
                         <input type="text" name="username" class="form-control" id="yourUsername" required onChange={event=>setUsername(event.target.value)}/>
-                        <div class="invalid-feedback">Please enter your username.</div>
+                        <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                            Please choose a username.
+                        </div>
                         </div>
                     </div>
 
@@ -63,7 +71,7 @@ const Login=()=> {
                         <p class="small mb-0">Don't have account? <a href="pages-register.html">Create an account</a></p>
                     </div>
                     </form>
-
+                    {error && <p>{error}</p>}
                 </div>
                 </div>
 
