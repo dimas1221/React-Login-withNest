@@ -3,11 +3,24 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Jumlah from './components/tambah';
+import Ping from './components/kali';
+import Min from './components/kurang';
+import Pembagian from './components/bagi';
+import KirimNama from './parentChild/kirimdatanama';
+import ParentComponent from './kirimFunctionKomponent/ParentKomponent';
+import Callculator from './kalkultor/ParentCal';
+import DataKaryawan from './datatabel/parentData';
+import Path from './routes';
+import NavbarMain from './Layout/Navbar';
+import SidebarMain from './Layout/Sidebar';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <NavbarMain />
+    <SidebarMain />
+    <Path />
   </React.StrictMode>
 );
 
