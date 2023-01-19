@@ -3,7 +3,7 @@ import config from "../Config/Config"
 const ApiLogin ={
     login : async (username, password)=>{
         let option ={
-            url: config.base_url+'/auth',
+            url: config.base_url+'auth/login',
             method: 'POST',
             headers:{
                 'Content-Type':'application/json'

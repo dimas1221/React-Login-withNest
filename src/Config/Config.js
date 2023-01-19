@@ -1,5 +1,5 @@
 const config ={
-    base_url :'localhost:3000/auth/login'
+    base_url :'http://localhost:3003/'
 }
 
 export default config
