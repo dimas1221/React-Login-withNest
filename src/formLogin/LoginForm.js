@@ -4,14 +4,15 @@ import { useNavigate } from 'react-router-dom';
 const Login=()=> {
     const [username, setUsername]=useState('')
     const [password, setPassword]=useState('')
+    const[hasil, setHasil]=useState([])
+
     const navigate = useNavigate()
-    const [error, setError]= useState('')
     const Submit = async ()=>{
         const result =await ApiLogin.login(username, password)
+        setHasil(result)
          if (result.message ==='berhasil') {
+            localStorage.setItem('token',result.token)
             navigate('/tabel')
-        }else{
-            setError ('password atau username salah')
         }
     }
     return (  
@@ -38,7 +39,7 @@ const Login=()=> {
                     <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
                     <p class="text-center small">Enter your username & password to login</p>
                     </div>
-
+                    <h5>{hasil.message}</h5>
                     <form class="row g-3 needs-validation" novalidate>
 
                     <div class="col-12">
@@ -58,12 +59,12 @@ const Login=()=> {
                         <div class="invalid-feedback">Please enter your password!</div>
                     </div>
 
-                    {/* <div class="col-12">
+                    <div class="col-12">
                         <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe"/>
                         <label class="form-check-label" for="rememberMe">Remember me</label>
                         </div>
-                    </div> */}
+                    </div>
                     <div class="col-12">
                         <button class="btn btn-primary w-100" type="button" onClick={Submit}>Login</button>
                     </div>
@@ -71,7 +72,6 @@ const Login=()=> {
                         <p class="small mb-0">Don't have account? <a href="pages-register.html">Create an account</a></p>
                     </div>
                     </form>
-                    {error && <p>{error}</p>}
                 </div>
                 </div>
 
